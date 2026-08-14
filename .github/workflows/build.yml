@@ -16,10 +16,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - uses: actions/setup-android@v1
-        with:
-          sdk-version: '34'
-
       - name: Build APK
         run: |
           chmod +x gradlew
