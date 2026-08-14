@@ -113,7 +113,11 @@ fun LauncherScreen() {
                             }
                         }
                         progressMsg = "准备启动..."
-                        Toast.makeText(context, "下载完成！启动功能待集成JRE运行环境", Toast.LENGTH_LONG).show()
+                        withContext(Dispatchers.IO) {
+                            GameLauncher.launch(context, version.id, ram.toIntOrNull() ?: 2048)
+                        }
+                        progressMsg = "游戏已启动"
+                        Toast.makeText(context, "游戏进程已启动", Toast.LENGTH_SHORT).show()
                     } catch (e: Exception) {
                         Toast.makeText(context, "失败: ${e.message}", Toast.LENGTH_LONG).show()
                         Log.e("Launcher", "Download failed", e)
