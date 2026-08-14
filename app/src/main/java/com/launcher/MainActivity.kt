@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.clickable
-import androidx.compose.ui.text.input.KeyboardOptions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.KeyboardType
 import java.io.File
 import kotlinx.coroutines.*
@@ -78,7 +78,7 @@ fun LauncherScreen() {
             value = ram,
             onValueChange = { ram = it },
             label = { Text("内存 (MB)") },
-            keyboardOptions = androidx.compose.ui.text.input.KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         Spacer(Modifier.height(24.dp))
 
@@ -104,7 +104,7 @@ fun LauncherScreen() {
                 scope.launch {
                     try {
                         isLoading = true
-                        val gameDir = context.getExternalFilesDir(null)?.let { File(it, "minecraft") }
+                        val gameDir = context.getExternalFilesDir(null)?.let { java.io.File(it, "minecraft") }
                             ?: context.filesDir.resolve("minecraft")
                         withContext(Dispatchers.IO) {
                             VersionDownloader.downloadVersion(version, gameDir) { msg, pct ->
