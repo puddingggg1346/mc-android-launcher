@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import java.io.File
 import java.io.FileOutputStream
-import java.io.InputStream
 
 object JreManager {
     private const val TAG = "JreManager"
@@ -58,3 +57,4 @@ object JreManager {
             target.setExecutable(true, false)
         }
     }
+}
