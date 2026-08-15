@@ -40,10 +40,11 @@ object JreManager {
     }
 
     private fun copyAsset(context: Context, assetPath: String, target: File) {
-        if (assetPath.endsWith("/")) {
+        val children = context.assets.list(assetPath)
+        if (children != null && children.isNotEmpty()) {
             // 目录
             target.mkdirs()
-            context.assets.list(assetPath)?.forEach { child ->
+            children.forEach { child ->
                 copyAsset(context, "$assetPath/$child", File(target, child))
             }
         } else {
@@ -54,7 +55,6 @@ object JreManager {
                     input.copyTo(output)
                 }
             }
-            target.setExecutable(true, false) // 全部给执行权限，简单处理
+            target.setExecutable(true, false)
         }
     }
-}
