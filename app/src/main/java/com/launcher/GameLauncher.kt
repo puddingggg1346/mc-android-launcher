@@ -8,7 +8,7 @@ object GameLauncher {
     fun launch(context: Context, versionId: String, ramMB: Int) {
         val gameDir = context.getExternalFilesDir(null)?.let { File(it, "minecraft") }
             ?: context.filesDir.resolve("minecraft")
-        val jreDir = JreManager.ensureJre(context)
+        val jreDir = JreManager.ensureJre(context)  // 已是外部存储可执行路径
         val javaBin = File(jreDir, "bin/java")
 
         if (!javaBin.exists()) {
